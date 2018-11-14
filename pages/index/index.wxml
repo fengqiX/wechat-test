@@ -1,0 +1,31 @@
+<!--pages/index/index.wxml-->
+
+<!-- query -->
+<view>
+  <text>Enter phone number</text>
+  <input type='number' bindinput='bindPhoneInput' value='{{phoneNumber}}'/>
+  <button type='primary' bindtap="queryPhoneInfo" disabled='{{disabled}}'>Search</button>
+</view>
+
+<!-- query result -->
+
+<view>
+  <view wx:if="{{phoneInfo}}">
+  <text>Result:</text>
+  <text wx:if="{{phoneInfo.ret === 0}}">
+    {{phoneInfo.operator}}{{phoneInfo.province}}{{phoneInfo.city}}
+  </text>
+
+  <text wx:else>{{phoneInfo.msg}}</text>
+  </view>
+</view>
+
+<!-- recent search-->
+<view>
+<text> Recent Search</text>
+<view> 
+  <view wx:for="{{historyList}}" bindtap='selectHistory' data-number='{{item}}'>
+    {{item}}
+  </view>
+</view>
+</view>
